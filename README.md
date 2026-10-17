@@ -2,6 +2,15 @@
 
 <h1>🦇 BATMAN PANEL</h1>
 <h3>BLOODLINE · GLASS STUDIO</h3>
+
+<a id="languages"></a>
+<p><b>🌐 Documentation / زبان مستندات / لغة التوثيق</b></p>
+<p>
+  <a href="#persian"><b>🇮🇷 فارسی</b></a> &nbsp; | &nbsp;
+  <a href="#english"><b>🇬🇧 English</b></a> &nbsp; | &nbsp;
+  <a href="#arabic"><b>🇸🇦 العربية</b></a>
+</p>
+
 <p><b>مدیریت کاربران. اتصال‌های اختصاصی. کنترل در تاریکی.</b></p>
 
 <p>
@@ -31,6 +40,14 @@
 <p><b>ONE CONSOLE. MANY ROUTES. YOUR RULES.</b></p>
 
 </div>
+
+<a id="persian"></a>
+
+# 🇮🇷 فارسی
+
+**فارسی** · [English](#english) · [العربية](#arabic) · [↑ انتخاب زبان](#languages)
+
+> زبان‌های این فایل مربوط به مستندات هستند؛ این تغییر به‌تنهایی زبان جدیدی به رابط پنل اضافه نمی‌کند.
 
 ## 🌑 گاتهام، زیر کنترل تو
 
@@ -478,3 +495,578 @@ npm test
 <p>اگر پروژه به کارت آمد، به مخزن ⭐ بده.</p>
 
 </div>
+
+
+[↑ انتخاب زبان](#languages)
+
+
+---
+
+<a id="english"></a>
+# 🇬🇧 English
+
+[فارسی](#persian) · **English** · [العربية](#arabic) · [↑ Language selector](#languages)
+
+## 🦇 Batman Panel — Bloodline · Glass Studio
+
+**One console. Many routes. Your rules.**
+
+Batman Panel is a Node.js application for managing users, subscriptions and connection routes. It includes a dark glass-style interface, a dedicated subscription portal and isolated reseller accounts.
+
+**Current release: `3.0.1` — Falix Compatibility Build.** This release reduces the entry-file size, starts the web listener before optional engine downloads and prioritizes the host-assigned port. Actual hosting compatibility still depends on available resources, permissions and network rules.
+
+> These are documentation languages. They do not add new interface languages to the application.
+
+## ✨ Features
+
+| Area | Included |
+| :--- | :--- |
+| 🩸 Bloodline | Centered Batman artwork, translucent panels and reduced visual activity |
+| 🎨 Appearance | Eight selectable backgrounds and browser-persisted preferences |
+| 👥 Users | Creation, editing, deletion, traffic quota, expiry, usage reset and credential rotation |
+| 🎛️ Protocol control | Per-user selection; no global subscription configuration-count cap for available, compatible routes |
+| 🔗 Subscriptions | Private links, copy controls, QR codes and client-oriented exports |
+| 💎 Public portal | Usage ring, remaining allowance, expiry, protocol filter and configuration download |
+| ♜ Resellers | Separate login, isolated users, protocol permissions, account limits and traffic allowance |
+| 📊 Service health | Measured response-time chart, resource metrics, engine state and local-port checks |
+| 🎧 Audio | Seven tracks, play/pause, track selection, seeking, volume and an on/off setting |
+| 📱 Responsive UI | Desktop and mobile layouts |
+
+### Bloodline mode
+
+Bloodline stops rain and animated effects, changes the automatic dashboard refresh interval from **5 to 20 seconds**, and selects track six. Automatic dashboard refresh pauses in a hidden tab. Disabled music stays disabled.
+
+**This is a lighter interface mode—not a bandwidth boost, a quota bypass or a guarantee of faster VPN connections.**
+
+## ⚡ Quick start
+
+Requirements:
+
+- Node.js **18 or later**; use a currently supported LTS release for a new installation.
+- Persistent, writable storage and permission to execute the required engines.
+- Initial network access to download enabled engines.
+- On Linux, `tar`, `unzip` and `openssl` for the relevant installation and certificate operations.
+
+Place the files in the application directory:
+
+```text
+batman-panel/
+├── index.js
+├── package.json
+└── README.md
+```
+
+```bash
+npm install
+npm run check
+npm start
+```
+
+Default address, unless overridden:
+
+```text
+http://YOUR-SERVER-IP:2705/batman
+```
+
+Set a strong `PANEL_SETUP_KEY` **before exposing a new installation**, then complete owner-password setup in the browser. Use HTTPS for public management access.
+
+The executable application is distributed in **two source files**. Images, styles and interface scripts are embedded in `index.js`; engines, certificates and persistent data are separate runtime files.
+
+## 🟢 Falix / Pterodactyl
+
+1. Upload the complete files directly to `/home/container/index.js` and `/home/container/package.json`.
+2. Set `MAIN_FILE` to `index.js`.
+3. Leave `NODE_ARGS` empty for normal operation; do not use `--batman-selftest` as a production startup argument.
+4. Keep the host-assigned port. Version `3.0.1` selects the first valid numeric value in this order:
+
+```text
+SERVER_PORT → PORT → SB_PORT → configured default
+```
+
+The console should first show:
+
+```text
+[Batman 3.0.1] ENTRY LOADED | Node ... | .../index.js | ... bytes
+```
+
+After a successful bind:
+
+```text
+Batman web server started. Optional network engines are preparing.
+```
+
+Download and upload the actual file rather than copying a large file preview. A working web page does **not** prove that every engine or transport is ready. A shared host may restrict UDP, executable binaries or network ports.
+
+## ⚙️ Environment variables
+
+Configure variables through your hosting panel or operating-system environment. Automatic loading of `.env` files is not assumed.
+
+| Variable | Purpose |
+| :--- | :--- |
+| `SERVER_PORT` | Host-assigned port; highest priority |
+| `PORT` / `SB_PORT` | Alternative port values |
+| `PANEL_PATH` | Panel path; defaults to `batman` |
+| `BK_DATA_DIR` | Persistent application-data directory |
+| `DOMAIN` / `FORCE_HOST` | Public host used in configurations; `FORCE_HOST` takes precedence |
+| `PANEL_SETUP_KEY` | Protects first-run owner setup |
+| `ADMIN_PASSWORD` | Supplies the owner password; keeping it set can reapply the password at startup |
+| `PANEL_TOKEN` | Additional protection for relevant owner routes; not a replacement for HTTPS |
+| `ENABLE_HYSTERIA2` | Enables or disables Hysteria2 |
+| `ENABLE_XHTTP` | Enables optional XHTTP; requires Xray |
+| `SHADOWTLS_SNI` | ShadowTLS handshake hostname |
+
+Example for a new Linux installation:
+
+```bash
+export SERVER_PORT=2705
+export PANEL_PATH=batman
+export BK_DATA_DIR="$PWD/bk-data"
+export DOMAIN="vpn.example.com"
+export PANEL_SETUP_KEY="$(openssl rand -hex 24)"
+npm start
+```
+
+Use your actual allocated port and public address. `127.0.0.1` is not a usable server address for remote subscribers.
+
+## 🌐 Protocols and exports
+
+Multiple routes can share the public listener. A protocol, a transport and a port are not interchangeable terms.
+
+| Route | Owner profile | Traffic-limited reseller |
+| :--- | :---: | :---: |
+| Hysteria2 | ✅ | — |
+| VLESS · WebSocket | ✅ | ✅ |
+| VLESS · HTTPUpgrade | ✅ | ✅ |
+| VLESS · TCP | ✅ | ✅ |
+| Trojan · WebSocket | ✅ | ✅ |
+| Trojan · TCP | ✅ | ✅ |
+| VLESS · gRPC | ✅ | — |
+| VMess · WebSocket | ✅ | — |
+| VLESS over ShadowTLS | ✅ | — |
+| Shadowsocks | ✅ | — |
+| VLESS · XHTTP | Optional; requires Xray | — |
+
+A check mark means the route is implemented—not guaranteed to work on every host or network. Exported routes depend on engine readiness, user permissions and client compatibility. Hysteria2 requires UDP access. The existing Shadowsocks architecture uses an owner-shared secret and does not provide reliable per-reseller accounting.
+
+Exports include **Base64, Full Base64, Raw, Full Raw, Sing-box JSON and compatible Clash Meta YAML**, with QR controls.
+
+For layered VLESS-over-ShadowTLS, use the **complete Sing-box JSON profile**. An incomplete standalone `shadowtls://` URI is not published in raw/base64 exports; the incomplete Clash entry is omitted as well.
+
+## ♜ Resellers and traffic quotas
+
+The owner creates a reseller with independent credentials, allowed protocols, total traffic allowance, maximum user count and a per-user allocation ceiling. Each reseller sees and manages only its own users.
+
+```text
+Owner → Reseller → Reseller users
+                    ↓
+            Recorded relay traffic
+                    ↓
+         Reseller allowance exhausted
+                    ↓
+     Console locked · Connections stopped
+                    ↓
+              Owner resets quota
+                    ↓
+       Existing eligible users resume
+```
+
+- Reseller allowance is based on recorded traffic, not the sum of assigned user quotas.
+- Exhaustion locks the reseller console and stops dependent user connections without deleting users.
+- An owner reset restores access for users whose own quota and validity remain available.
+- Resetting or deleting a user does **not** refund already charged reseller usage.
+- Resetting the reseller does not automatically reset each user's exhausted personal quota.
+
+Only the **five identifiable TCP relay routes** marked above are delegated. Accounting measures bytes passing through the relay and may include transport overhead; it is not necessarily equal to downloaded file size.
+
+## 🎧 Audio
+
+Track two is selected on a first visit at **12% volume**. Bloodline selects track six and restores the previous selection when switched off. Music can be disabled, and settings are stored in that browser.
+
+Audible autoplay may require an initial click or tap. Audio is streamed from external URLs; availability, geographic restrictions and permission to use those files are independent of the panel.
+
+## 📊 Health and persistence
+
+Health checks report measured panel latency, visible resource metrics, engine processes and local-port responses. They are not an external end-to-end connection test, an inbound-UDP test or a hosting-provider infrastructure audit.
+
+The default container data directory is:
+
+```text
+/home/container/bk-data/
+├── state.json
+├── users.json
+├── panel-settings.json
+├── resellers.json
+├── bin/
+├── cert/
+└── ...
+```
+
+Use `BK_DATA_DIR` for a different persistent location. Confirm the actual path in the startup log.
+
+**To upgrade:** stop the service, back up the entire data directory and current source, replace only `index.js` and `package.json`, retain your environment and data path, then restart and verify users and reseller access.
+
+The in-panel user export is **not a complete installation backup**. Preserve the entire data directory, including reseller state and keys. Never commit it to a public repository.
+
+## 🔐 Deployment checklist
+
+- Use valid HTTPS for owner and reseller login.
+- Set `PANEL_SETUP_KEY` before first public exposure.
+- Keep passwords, session tokens, subscription links, backups and certificates private.
+- Inspect transport security separately: some raw/WS configurations have no TLS. A VLESS or Trojan label alone is not an encryption guarantee.
+- Some Sing-box binaries lack the optional V2Ray statistics API. Do not assume Hysteria2/UDP traffic quotas are reliably accounted for without independent verification.
+- If reseller storage fails, delegated accounts fail closed while the owner console remains available for diagnosis; damaged data is not automatically deleted.
+- Follow applicable laws and your host's terms of service.
+
+Suggested `.gitignore` entries:
+
+```gitignore
+node_modules/
+bk-data/
+.env
+.env.*
+!.env.example
+*.log
+state.json
+users.json
+resellers.json
+panel-settings.json
+*.key
+*.pem
+```
+
+## 🧪 Tests and scope
+
+```bash
+npm run check
+npm test
+```
+
+Development checks recorded successful internal tests, **42 API/isolation/quota checks**, Chromium desktop/mobile UI checks, real local request forwarding over **10 active routes**, WebSocket initial/fragmented-identity accounting, quota exhaustion/disconnection and owner reset/resume. Falix-style local boot tests covered port selection, starting the web listener before downloads and preserving owner access when reseller storage was corrupt.
+
+`npm test` runs the packaged internal self-test—not all external integration/browser tests. Audio transport was mocked in UI tests. These results are **not hosted CI, a security audit or confirmation inside a private Falix account**. XHTTP/Xray, Argo, TUIC and WireGuard were not covered by that transport-test set.
+
+## 🛠️ Troubleshooting
+
+<details>
+<summary><b>Immediate offline state with no entry message</b></summary>
+
+Check `MAIN_FILE`, the upload directory, file completeness, Node version and startup arguments. Run `npm run check`. Exit code `137`, `Killed` or heap errors may indicate a resource limit; inspect the host's actual limits. No `ENTRY LOADED` message means execution of the new entry file has not been confirmed.
+
+</details>
+
+<details>
+<summary><b>The panel loads but configurations cannot connect</b></summary>
+
+Check engine readiness, public host/port, firewall rules, UDP access for Hysteria2 and client/format support. HTTP proxy or CDN support does not imply support for every transport.
+
+</details>
+
+<details>
+<summary><b>The reseller console is locked</b></summary>
+
+The owner should inspect the reseller's allowance and enabled state. A storage fault can also lock delegated access; check disk space, permissions and `resellers.json`. Restore a valid backup if necessary—do not delete the data directory as a troubleshooting shortcut.
+
+</details>
+
+<details>
+<summary><b>Music does not autoplay, or EADDRINUSE / EACCES appears</b></summary>
+
+For music, press Play and verify the toggle, volume and external URL. For `EADDRINUSE`, stop the old instance or correct the allocated port. For `EACCES`, inspect port and filesystem permissions.
+
+</details>
+
+## 🤝 Contributing and content rights
+
+Report the panel/Node versions, environment, reproduction steps, expected behavior and relevant sanitized logs. Never publish credentials, subscription links or sensitive vulnerability details in a public issue.
+
+The package declares **MIT**. Bundled dependency notices remain in `index.js`. This does not grant rights to Batman, trademarks, artwork or external music; verify the relevant permissions before redistribution or commercial use.
+
+[YouTube](https://www.youtube.com/@Batman-V-P-N) · [GitHub](https://github.com/Batman-panel) · [Telegram](https://t.me/BATMAN_Pane_L)
+
+[↑ Language selector](#languages)
+
+
+---
+
+<a id="arabic"></a>
+# 🇸🇦 العربية
+
+[فارسی](#persian) · [English](#english) · **العربية** · [↑ اختيار اللغة](#languages)
+
+## 🦇 Batman Panel — Bloodline · Glass Studio
+
+**لوحة واحدة. مسارات متعددة. قواعدك أنت.**
+
+Batman Panel تطبيق يعمل على Node.js لإدارة المستخدمين والاشتراكات ومسارات الاتصال، مع تصميم داكن وزجاجي، وصفحة اشتراك مستقلة، وحسابات مشرفين فرعيين معزولة.
+
+**الإصدار الحالي: `3.0.1` — نسخة توافق Falix.** يتضمن تقليل حجم ملف التشغيل، وبدء واجهة الويب قبل تنزيل المحركات الاختيارية، وإعطاء الأولوية للمنفذ المخصص من الاستضافة. يبقى التشغيل الفعلي مرتبطاً بموارد الخادم والصلاحيات وقواعد الشبكة.
+
+> هذه لغات التوثيق فقط؛ إضافة الترجمة إلى README لا تضيف لغات جديدة إلى واجهة التطبيق.
+
+## ✨ المميزات
+
+| القسم | الإمكانات |
+| :--- | :--- |
+| 🩸 Bloodline | صورة باتمان في الوسط، لوحات شفافة وتقليل المؤثرات المتحركة |
+| 🎨 المظهر | ثماني خلفيات قابلة للاختيار وحفظ التفضيلات في المتصفح |
+| 👥 المستخدمون | إنشاء وتعديل وحذف، حصة بيانات، مدة صلاحية، تصفير الاستهلاك وتجديد بيانات الاتصال |
+| 🎛️ البروتوكولات | اختيار المسارات لكل مستخدم؛ دون سقف عام لعدد الإعدادات في الاشتراك للمسارات المتاحة والمتوافقة |
+| 🔗 الاشتراكات | روابط خاصة، نسخ سريع، رموز QR وصيغ مناسبة للعملاء |
+| 💎 صفحة الاشتراك | مؤشر دائري للاستهلاك، الرصيد المتبقي، الانتهاء، تصفية البروتوكول وتنزيل الإعدادات |
+| ♜ المشرفون الفرعيون | دخول منفصل، مستخدمون معزولون، بروتوكولات مسموحة وحدود للحسابات والبيانات |
+| 📊 صحة الخدمة | رسم لزمن استجابة اللوحة، موارد النظام، حالة المحركات وفحص المنافذ المحلية |
+| 🎧 الصوت | سبعة مقاطع، تشغيل وإيقاف، اختيار المقطع، الانتقال داخله والتحكم بالصوت |
+| 📱 التصميم المتجاوب | تخطيط لسطح المكتب والهاتف |
+
+### وضع Bloodline
+
+يوقف هذا الوضع المطر والمؤثرات المتحركة، ويغيّر التحديث التلقائي للوحة من **٥ إلى ٢٠ ثانية**، ويختار المقطع السادس. يتوقف التحديث التلقائي عندما يكون تبويب المتصفح مخفياً. إذا كانت الموسيقى معطلة فلن تُشغَّل قسراً.
+
+**هذا وضع أخف للواجهة، وليس زيادة مضمونة لسرعة الإنترنت أو تجاوزاً للحصص.**
+
+## ⚡ البدء السريع
+
+المتطلبات:
+
+- **Node.js 18 أو أحدث**؛ يُنصح بإصدار LTS مدعوم للتثبيت الجديد.
+- تخزين دائم قابل للكتابة وصلاحية تشغيل المحركات المطلوبة.
+- اتصال بالشبكة لتنزيل المحركات المفعلة في البداية.
+- على Linux: الأدوات `tar` و`unzip` و`openssl` للعمليات المرتبطة بالتثبيت والشهادات.
+
+ضع الملفات في مجلد التطبيق:
+
+```text
+batman-panel/
+├── index.js
+├── package.json
+└── README.md
+```
+
+```bash
+npm install
+npm run check
+npm start
+```
+
+العنوان الافتراضي، ما لم تغيّر المنفذ أو المسار:
+
+```text
+http://YOUR-SERVER-IP:2705/batman
+```
+
+عيّن قيمة قوية لـ `PANEL_SETUP_KEY` **قبل إتاحة تثبيت جديد على الإنترنت**، ثم أكمل إعداد كلمة مرور المالك من المتصفح. استخدم HTTPS للوصول الإداري العام.
+
+يتكون الكود التنفيذي الموزع من **ملفين**. الصور والتنسيقات وسكربتات الواجهة مضمّنة في `index.js`، بينما تُحفظ المحركات والشهادات والبيانات كملفات تشغيل منفصلة.
+
+## 🟢 التثبيت على Falix / Pterodactyl
+
+1. ارفع الملفات الكاملة مباشرة إلى `/home/container/index.js` و`/home/container/package.json`.
+2. اضبط `MAIN_FILE` على `index.js`.
+3. اترك `NODE_ARGS` فارغاً للتشغيل المعتاد، ولا تستخدم `--batman-selftest` لتشغيل الخدمة العامة.
+4. احتفظ بالمنفذ المخصص من الاستضافة. يختار الإصدار `3.0.1` أول قيمة رقمية صالحة بهذا الترتيب:
+
+```text
+SERVER_PORT → PORT → SB_PORT → المنفذ الافتراضي في الإعدادات
+```
+
+يجب أن تظهر أولاً في وحدة التحكم رسالة:
+
+```text
+[Batman 3.0.1] ENTRY LOADED | Node ... | .../index.js | ... bytes
+```
+
+وبعد ربط المنفذ بنجاح:
+
+```text
+Batman web server started. Optional network engines are preparing.
+```
+
+نزّل الملف الفعلي وارفعه كاملاً؛ لا تنسخ معاينة ملف كبير إلى المحرر. فتح صفحة الويب **لا يثبت جاهزية جميع المحركات والمسارات**. قد تقيّد الاستضافة المشتركة UDP أو تشغيل الملفات التنفيذية أو بعض المنافذ.
+
+## ⚙️ متغيرات البيئة
+
+اضبط المتغيرات من لوحة الاستضافة أو بيئة نظام التشغيل. لا يُفترض تحميل ملفات `.env` تلقائياً.
+
+| المتغير | الاستخدام |
+| :--- | :--- |
+| `SERVER_PORT` | المنفذ المخصص من الاستضافة؛ الأولوية الأعلى |
+| `PORT` / `SB_PORT` | قيم بديلة للمنفذ |
+| `PANEL_PATH` | مسار اللوحة؛ الافتراضي `batman` |
+| `BK_DATA_DIR` | مجلد البيانات الدائم |
+| `DOMAIN` / `FORCE_HOST` | العنوان العام المستخدم في الإعدادات؛ الأولوية لـ `FORCE_HOST` |
+| `PANEL_SETUP_KEY` | حماية الإعداد الأولي لحساب المالك |
+| `ADMIN_PASSWORD` | تعيين كلمة مرور المالك من البيئة؛ قد يُعاد تطبيقها عند كل تشغيل إذا بقي المتغير مضبوطاً |
+| `PANEL_TOKEN` | حماية إضافية للمسارات الإدارية ذات الصلة؛ ليست بديلاً عن HTTPS |
+| `ENABLE_HYSTERIA2` | تفعيل Hysteria2 أو تعطيله |
+| `ENABLE_XHTTP` | تفعيل XHTTP الاختياري؛ يتطلب Xray |
+| `SHADOWTLS_SNI` | اسم مضيف المصافحة لـ ShadowTLS |
+
+مثال لتثبيت Linux جديد:
+
+```bash
+export SERVER_PORT=2705
+export PANEL_PATH=batman
+export BK_DATA_DIR="$PWD/bk-data"
+export DOMAIN="vpn.example.com"
+export PANEL_SETUP_KEY="$(openssl rand -hex 24)"
+npm start
+```
+
+استخدم المنفذ المخصص لك والعنوان العام الحقيقي. العنوان `127.0.0.1` غير صالح للمشتركين الذين يتصلون من خارج الخادم.
+
+## 🌐 البروتوكولات وصيغ الاشتراك
+
+يمكن أن تشترك عدة مسارات في منفذ عام واحد. البروتوكول ونوع النقل والمنفذ ليست مفاهيم متطابقة.
+
+| المسار | ملف المالك | مشرف فرعي بحصة بيانات |
+| :--- | :---: | :---: |
+| Hysteria2 | ✅ | — |
+| VLESS · WebSocket | ✅ | ✅ |
+| VLESS · HTTPUpgrade | ✅ | ✅ |
+| VLESS · TCP | ✅ | ✅ |
+| Trojan · WebSocket | ✅ | ✅ |
+| Trojan · TCP | ✅ | ✅ |
+| VLESS · gRPC | ✅ | — |
+| VMess · WebSocket | ✅ | — |
+| VLESS over ShadowTLS | ✅ | — |
+| Shadowsocks | ✅ | — |
+| VLESS · XHTTP | اختياري؛ يتطلب Xray | — |
+
+تعني العلامة أن المسار مُنفَّذ، لا أنه مضمون على كل استضافة أو شبكة. يعتمد الإخراج على جاهزية المحرك وصلاحيات المستخدم وتوافق العميل. يحتاج Hysteria2 إلى UDP. تستخدم بنية Shadowsocks الحالية سراً مشتركاً خاصاً بالمالك ولا توفر محاسبة موثوقة لكل مشرف فرعي.
+
+الصيغ المتاحة تشمل **Base64 وFull Base64 وRaw وFull Raw وSing-box JSON وClash Meta YAML للمسارات المتوافقة**، مع أزرار QR.
+
+للاتصال المركب VLESS-over-ShadowTLS استخدم **ملف Sing-box JSON الكامل**. لا تُنشر وصلة `shadowtls://` مستقلة ناقصة في إخراج raw/base64، كما يُحذف إدخال Clash غير المكتمل.
+
+## ♜ المشرفون الفرعيون وحصص البيانات
+
+ينشئ المالك حساباً فرعياً ببيانات دخول مستقلة، ويحدد البروتوكولات المسموحة والحصة الإجمالية والحد الأقصى للمستخدمين وحجم الحصة الممكن تخصيصها لكل مستخدم. يرى كل مشرف مستخدميه ويديرهم فقط.
+
+```text
+المالك ← ينشئ مشرفاً فرعياً ← ينشئ مستخدميه
+                              ↓
+                    تسجيل البيانات عبر المرحّل
+                              ↓
+                       انتهاء حصة المشرف
+                              ↓
+                  قفل اللوحة وإيقاف الاتصالات
+                              ↓
+                   تصفير الحصة بواسطة المالك
+                              ↓
+              استعادة وصول المستخدمين المؤهلين
+```
+
+- تُحتسب الحصة من حركة البيانات المسجلة، لا من مجموع الحصص المخصصة للمستخدمين.
+- عند انتهاء حصة المشرف تُقفل لوحته وتتوقف اتصالات مستخدميه، **دون حذفهم**.
+- بعد تصفير المالك للحصة، يعود المستخدمون الذين بقيت لهم حصة شخصية وصلاحية زمنية.
+- تصفير استهلاك مستخدم أو حذفه **لا يعيد** الاستهلاك المسجل إلى رصيد المشرف.
+- تصفير حصة المشرف لا يصفر تلقائياً الحصص الشخصية المنتهية للمستخدمين.
+
+يُسمح للمشرفين الفرعيين فقط بـ **مسارات TCP الخمسة القابلة للتعرّف والمحاسبة** المبينة في الجدول. القياس مبني على البايتات التي تمر عبر المرحّل، وقد يشمل سربار النقل؛ وليس بالضرورة حجم الملفات الصافي.
+
+## 🎧 الموسيقى
+
+يُختار المقطع الثاني في الزيارة الأولى، بصوت ابتدائي **١٢٪**. يختار Bloodline المقطع السادس ويعيد الاختيار السابق عند إيقافه. يمكن تعطيل الموسيقى، وتُحفظ التفضيلات في المتصفح نفسه.
+
+قد يتطلب التشغيل التلقائي المسموع نقرة أو لمسة أولى. تُبث المقاطع من روابط خارجية؛ توافرها والقيود الجغرافية وحقوق استخدامها أمور مستقلة عن اللوحة.
+
+## 📊 صحة الخدمة وتخزين البيانات
+
+تعرض فحوص الصحة زمن استجابة اللوحة والموارد الظاهرة وحالة المحركات واستجابة المنافذ المحلية. لا تحل محل اختبار اتصال خارجي متكامل أو اختبار وصول UDP من الإنترنت أو تدقيق بنية شركة الاستضافة.
+
+مجلد البيانات الافتراضي في بيئة الحاوية:
+
+```text
+/home/container/bk-data/
+├── state.json
+├── users.json
+├── panel-settings.json
+├── resellers.json
+├── bin/
+├── cert/
+└── ...
+```
+
+يمكن تغييره بواسطة `BK_DATA_DIR`. راجع المسار الفعلي في سجل بدء التشغيل.
+
+**للترقية:** أوقف الخدمة، وانسخ مجلد البيانات كاملاً والكود الحالي احتياطياً، ثم استبدل `index.js` و`package.json` فقط، واحتفظ بمتغيرات البيئة ومسار البيانات، ثم أعد التشغيل وافحص الحسابات والاشتراكات.
+
+تصدير المستخدمين من داخل اللوحة **ليس نسخة احتياطية كاملة للتثبيت**. احتفظ بمجلد البيانات كله، بما فيه معلومات المشرفين والمفاتيح، ولا ترفعه إلى مستودع عام.
+
+## 🔐 قائمة الأمان قبل النشر
+
+- استخدم HTTPS صالحاً لدخول المالك والمشرفين الفرعيين.
+- اضبط `PANEL_SETUP_KEY` قبل الإتاحة الأولى على الإنترنت.
+- احتفظ بكلمات المرور ورموز الجلسات وروابط الاشتراك والنسخ الاحتياطية والشهادات بشكل خاص.
+- افحص أمان النقل بصورة مستقلة؛ بعض إعدادات raw/WS لا تستخدم TLS. اسم VLESS أو Trojan وحده لا يضمن التشفير المناسب.
+- تفتقر بعض بِنَى Sing-box إلى واجهة إحصاءات V2Ray الاختيارية؛ لا تفترض موثوقية محاسبة Hysteria2/UDP دون تحقق مستقل.
+- عند تعطل تخزين المشرفين، تُقفل الحسابات الفرعية احترازياً، بينما تبقى لوحة المالك متاحة للتشخيص؛ لا تُحذف البيانات التالفة تلقائياً.
+- التزم بالقوانين وشروط خدمة الاستضافة.
+
+عناصر مقترحة لملف `.gitignore`:
+
+```gitignore
+node_modules/
+bk-data/
+.env
+.env.*
+!.env.example
+*.log
+state.json
+users.json
+resellers.json
+panel-settings.json
+*.key
+*.pem
+```
+
+## 🧪 الاختبارات ونطاقها
+
+```bash
+npm run check
+npm test
+```
+
+سُجل نجاح الاختبار الداخلي، و**٤٢ فحصاً للواجهات البرمجية والعزل والحصص**، وفحوص واجهة Chromium للحاسوب والهاتف، وتمرير طلبات محلية عبر **١٠ مسارات فعالة بمحرك حقيقي**. شملت الفحوص محاسبة WebSocket للبيانات الأولية والهوية المجزأة، وانتهاء الحصة وقطع الاتصال والعودة بعد تصفير المالك. شملت اختبارات بدء تشغيل محلية مشابهة لـ Falix اختيار المنفذ وبدء الويب قبل التنزيل وبقاء لوحة المالك عند تلف ملف المشرفين.
+
+ينفذ `npm test` الاختبار الذاتي المضمّن فقط، وليس كل اختبارات التكامل والمتصفح الخارجية. جرى محاكاة نقل الصوت في اختبارات الواجهة. هذه النتائج **ليست CI للمستودع، ولا تدقيقاً أمنياً، ولا تأكيداً للتشغيل داخل حساب Falix خاص**. لم تشمل مجموعة اختبارات النقل XHTTP/Xray أو Argo أو TUIC أو WireGuard.
+
+## 🛠️ حل المشكلات
+
+<details>
+<summary><b>الخادم يتوقف فوراً ولا تظهر رسالة البداية</b></summary>
+
+تحقق من `MAIN_FILE` ومجلد الرفع واكتمال الملف وإصدار Node ومعاملات التشغيل. نفّذ `npm run check`. قد يشير الرمز `137` أو `Killed` أو أخطاء heap إلى نقص الموارد؛ افحص حدود الاستضافة الحقيقية. عدم ظهور `ENTRY LOADED` يعني أن تنفيذ ملف الدخول الجديد لم يُؤكَّد.
+
+</details>
+
+<details>
+<summary><b>اللوحة تعمل لكن الإعدادات لا تتصل</b></summary>
+
+تحقق من جاهزية المحركات والعنوان العام والمنفذ والجدار الناري وUDP لـ Hysteria2 وتوافق العميل والصيغة. دعم HTTP عبر بروكسي أو CDN لا يعني دعم جميع أنواع النقل.
+
+</details>
+
+<details>
+<summary><b>لوحة المشرف الفرعي مقفلة</b></summary>
+
+على المالك فحص الحصة وحالة التفعيل. قد يقفل خطأ التخزين الوصول أيضاً؛ تحقق من مساحة القرص والصلاحيات وملف `resellers.json`. استعد نسخة احتياطية سليمة عند الحاجة، ولا تحذف مجلد البيانات كحل سريع.
+
+</details>
+
+<details>
+<summary><b>الموسيقى لا تعمل تلقائياً أو تظهر أخطاء EADDRINUSE / EACCES</b></summary>
+
+للموسيقى: اضغط تشغيل وافحص التفعيل والصوت والرابط الخارجي. يدل `EADDRINUSE` عادة على منفذ مشغول؛ أوقف النسخة القديمة أو صحح المنفذ المخصص. افحص صلاحيات المنفذ والملفات عند ظهور `EACCES`.
+
+</details>
+
+## 🤝 المساهمة وحقوق المحتوى
+
+أرفق إصدار اللوحة وNode وبيئة التشغيل وخطوات إعادة المشكلة والنتيجة المتوقعة وسجلات منقحة. لا تنشر بيانات الدخول أو روابط الاشتراك أو تفاصيل ثغرة حساسة في بلاغ عام.
+
+تعلن الحزمة ترخيص **MIT**، وتبقى إشعارات تراخيص الاعتماديات المضمّنة داخل `index.js`. لا يمنح ذلك حقوق استخدام شخصية باتمان أو العلامات التجارية أو الصور أو الموسيقى الخارجية؛ تحقق من التصاريح المناسبة قبل إعادة النشر أو الاستخدام التجاري.
+
+[YouTube](https://www.youtube.com/@Batman-V-P-N) · [GitHub](https://github.com/Batman-panel) · [Telegram](https://t.me/BATMAN_Pane_L)
+
+[↑ اختيار اللغة](#languages)
