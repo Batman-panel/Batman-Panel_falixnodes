@@ -1,0 +1,21 @@
+{
+  "name": "batman-panel",
+  "version": "3.0.1",
+  "description": "Self-contained Batman Glass Studio with isolated reseller accounts, TCP traffic quotas and per-user protocol controls.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node index.js --batman-selftest",
+    "check": "node --check index.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "express": "^4.21.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Batman Panel",
+  "license": "MIT",
+  "type": "commonjs"
+}
